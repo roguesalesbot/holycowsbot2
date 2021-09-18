@@ -1,2 +1,2 @@
-# holycowsbot2
-second bot
+# holycowsnft
+holycowsbot
