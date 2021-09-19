@@ -25,7 +25,7 @@ function formatAndSendTweet(event) {
     const assetID = `${openseaLink}`;
     const cowid = assetID.substr(69);
 
-    const tweetText = `Holy Cow #${cowid} bought for ${formattedEthPrice}${ethers.constants.EtherSymbol} ($${Number(formattedUsdPrice).toFixed(2)}) #NFTs ${openseaLink}`;
+    const tweetText = `Holy Cow #${cowid} bought for ${formattedEthPrice}${ethers.constants.EtherSymbol} ($${Number(formattedUsdPrice).toFixed(2)}) #holycows #NFTs ${openseaLink}`;
     
     console.log(tweetText);
 
@@ -36,16 +36,16 @@ function formatAndSendTweet(event) {
     // }
 
     // OPTIONAL PREFERENCE - if you want the tweet to include an attached image instead of just text
-    const imageUrl = _.get(event, ['asset', 'image_url']);
-    // image change
-    return tweet.tweetWithImage(tweetText, imageUrl);
+    // const imageUrl = _.get(event, ['asset', 'image_url']);
+    // without image
+    // tweet.tweetWithImage(tweetText, imageUrl);
 
-    // return tweet.tweet(tweetText);
+    return tweet.tweet(tweetText);
 }
 
 // Poll OpenSea every 60 seconds & retrieve all sales for a given collection in either the time since the last sale OR in the last minute
 setInterval(() => {
-    const lastSaleTime = cache.get('lastSaleTime', null) || moment().startOf('minute').subtract(80, "seconds").unix();
+    const lastSaleTime = cache.get('lastSaleTime', null) || moment().startOf('minute').subtract(288, "seconds").unix();
 
     console.log(`Last sale (in seconds since Unix epoch): ${cache.get('lastSaleTime', null)}`);
 
