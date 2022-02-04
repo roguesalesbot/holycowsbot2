@@ -21,7 +21,7 @@ function formatAndSendTweet(event) {
     const formattedEthPrice = formattedUnits * tokenEthPrice;
     const formattedUsdPrice = formattedUnits * tokenUsdPrice;
 
-    const tweetText = `${assetName} bought for ${formattedEthPrice}${ethers.constants.EtherSymbol} ($${Number(formattedUsdPrice).toFixed(2)}) #NFTs ${openseaLink}`;
+    const tweetText = `Moshi Mochi ${assetName} bought for ${formattedEthPrice}${ethers.constants.EtherSymbol} ($${Number(formattedUsdPrice).toFixed(2)}) #NFTs ${openseaLink}`;
 
     console.log(tweetText);
 
@@ -33,11 +33,11 @@ function formatAndSendTweet(event) {
 
     // OPTIONAL PREFERENCE - if you want the tweet to include an attached image instead of just text
 
-    //const imageUrl = _.get(event, ['asset', 'image_url']);
+    const imageUrl = _.get(event, ['asset', 'image_url']);
 
-    //return tweet.tweetWithImage(tweetText, imageUrl);
+    return tweet.tweetWithImage(tweetText, imageUrl);
 
-    return tweet.tweet(tweetText);
+    //return tweet.tweet(tweetText);
 }
 
 // Poll OpenSea every 300 seconds & retrieve all sales for a given collection in either the time since the last sale OR in the last minute
