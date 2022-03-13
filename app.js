@@ -53,7 +53,7 @@ setInterval(() => {
         params: {
             collection_slug: process.env.OPENSEA_COLLECTION_SLUG,
             event_type: 'successful',
-            occurred_after: lastSaleTime,
+            occurred_before: lastSaleTime,
             only_opensea: 'false'
         }
     }).then((response) => {
