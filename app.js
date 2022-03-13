@@ -9,6 +9,9 @@ const cache = require('./cache');
 function formatAndSendTweet(event) {
     // Handle both individual items + bundle sales
     const assetName = _.get(event, ['asset', 'name'], _.get(event, ['asset_bundle', 'name']));
+    if(!assetName){
+	return;
+    }
     const openseaLink = _.get(event, ['asset', 'permalink'], _.get(event, ['asset_bundle', 'permalink']));
 
     const totalPrice = _.get(event, 'total_price');
@@ -22,7 +25,7 @@ function formatAndSendTweet(event) {
     const formattedUsdPrice = formattedUnits * tokenUsdPrice;
 
     const tweetText = `${assetName} bought for ${formattedEthPrice}${ethers.constants.EtherSymbol} ($${Number(formattedUsdPrice).toFixed(2)}) #NFTs ${openseaLink}`;
-
+    
     console.log(tweetText);
 
     // OPTIONAL PREFERENCE - don't tweet out sales below X ETH (default is 1 ETH - change to what you prefer)
