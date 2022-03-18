@@ -36,16 +36,16 @@ function formatAndSendTweet(event) {
 
     // OPTIONAL PREFERENCE - if you want the tweet to include an attached image instead of just text
 
-    //const imageUrl = _.get(event, ['asset', 'image_url']);
+    const imageUrl = _.get(event, ['asset', 'image_url']);
 
-    //return tweet.tweetWithImage(tweetText, imageUrl);
+    return tweet.tweetWithImage(tweetText, imageUrl);
 
-    return tweet.tweet(tweetText);
+    //return tweet.tweet(tweetText);
 }
 
 // Poll OpenSea every 300 seconds & retrieve all sales for a given collection in either the time since the last sale OR in the last minute
 setInterval(() => {
-    const lastSaleTime = cache.get('lastSaleTime', null) || moment().startOf('minute').add(3500, "seconds").unix();
+    const lastSaleTime = cache.get('lastSaleTime', null) || moment().startOf('minute').add(269, "seconds").unix();
 
     console.log(`Last sale (in seconds since Unix epoch): ${cache.get('lastSaleTime', null)}`);
 
@@ -56,7 +56,7 @@ setInterval(() => {
         params: {
             collection_slug: process.env.OPENSEA_COLLECTION_SLUG,
             event_type: 'successful',
-            occurred_before: lastSaleTime,
+            occurred_after: lastSaleTime,
             only_opensea: 'false'
         }
     }).then((response) => {
