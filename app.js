@@ -22,7 +22,7 @@ function formatAndSendTweet(event) {
     const formattedUsdPrice = formattedUnits * tokenUsdPrice;
 
     const tweetText = `${assetName} bought for ${formattedEthPrice}${ethers.constants.EtherSymbol} ($${Number(formattedUsdPrice).toFixed(2)}) #NFTs ${openseaLink}`;
-    
+
     console.log(tweetText);
 
     // OPTIONAL PREFERENCE - don't tweet out sales below X ETH (default is 1 ETH - change to what you prefer)
@@ -42,7 +42,7 @@ function formatAndSendTweet(event) {
 
 // Poll OpenSea every 300 seconds & retrieve all sales for a given collection in either the time since the last sale OR in the last minute
 setInterval(() => {
-    const lastSaleTime = cache.get('lastSaleTime', null) || moment().startOf('minute').add(269, "seconds").unix();
+    const lastSaleTime = cache.get('lastSaleTime', null) || moment().startOf('minute').subtract(269, "seconds").unix();
 
     console.log(`Last sale (in seconds since Unix epoch): ${cache.get('lastSaleTime', null)}`);
 
@@ -77,4 +77,4 @@ setInterval(() => {
     }).catch((error) => {
         console.error(error);
     });    
-}, 88888);
+}, 300000);
