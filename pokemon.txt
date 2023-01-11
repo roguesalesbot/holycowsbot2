@@ -122,8 +122,8 @@ starmie
 mr.mime
 scyther
 jynx
-electbuzz
-nagmar
+electabuzz
+magmar
 pinsir
 tauros
 magikarp
